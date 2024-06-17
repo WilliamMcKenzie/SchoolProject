@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0823529, 0.545098, 0, 1 )
+
+[sub_resource type="Theme" id=3]
+ProgressBar/styles/bg = SubResource( 1 )
+ProgressBar/styles/fg = SubResource( 2 )
+
+[node name="Health" type="ProgressBar"]
+margin_right = 35.0
+margin_bottom = 9.0
+theme = SubResource( 3 )
+max_value = 3.0
+value = 3.0
+percent_visible = false
