@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-var speed = 300
-var base_cooldown = 50
+var speed = 400
+var base_cooldown = 30
 var cooldown = 0
 
 var projectile = load("res://Objects/Projectiles/Projectile.tscn")

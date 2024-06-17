@@ -13,5 +13,7 @@ func _physics_process(delta):
 		queue_free()
 
 func damage(area):
-	if area.name != caller_name:
+	if caller_name == "Player" and area.has_method("I_AM_A_ENEMY"):
+		area.get_node("Health").value -= 1
+	elif caller_name == "Enemy" and not area.has_method("I_AM_A_ENEMY"):
 		area.get_node("Health").value -= 1

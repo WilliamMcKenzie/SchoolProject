@@ -11,9 +11,9 @@ var nodes = {
 }
 
 var maxcooldowns = {
-	"Enemy" : 5,
-	"Knight" : 10,
-	"Dragon" : 40,
+	"Enemy" : 8,
+	"Knight" : 18,
+	"Dragon" : 9999,
 }
 
 var cooldowns = {
@@ -42,5 +42,9 @@ func _process(delta):
 		if cooldowns[enemy_type] <= 0:
 			cooldowns[enemy_type] = maxcooldowns[enemy_type]
 			var enemy_instance = enemy_node.instance()
+			if enemy_type == "Knight":
+				enemy_instance.speed = 50
 			add_child(enemy_instance)
-			enemy_instance.position = Vector2(rand_range(1,500),rand_range(1,500))
+			
+			if enemy_type != "Dragon":
+				enemy_instance.position = Vector2(rand_range(1,500),rand_range(1,500))
