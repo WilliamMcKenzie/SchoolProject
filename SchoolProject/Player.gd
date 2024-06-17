@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var speed = 400
-var base_cooldown = 30
+var base_cooldown = 50
 var cooldown = 0
 var weapon = "metal"
 
@@ -43,7 +43,6 @@ func _physics_process(delta):
 			var proj = projectile.instance()
 			proj.caller_name = "Player"
 			if weapon == "metal":
-				print("uh oh")
 				proj.get_node("sprite").material.set_shader_param("swordnew", Color(0.703125, 0.703125, 0.703125,1))
 				proj.damage = 1
 			elif weapon == "mithril":
@@ -52,9 +51,11 @@ func _physics_process(delta):
 				print(proj.get_node("sprite").material.get_shader_param("swordnew"))
 				proj.damage = 2
 			elif weapon == "void":
-				print("uh oh")
 				proj.get_node("sprite").material.set_shader_param("swordnew", Color(0.426497, 0.064392, 0.824219,1))
 				proj.damage = 3
+			elif weapon == "dragon":
+				proj.get_node("sprite").material.set_shader_param("swordnew", Color(1, 0, 0,1))
+				proj.damage = 7
 			get_parent().add_child(proj)
 			proj.get_node("sprite").flip_h = !sprite.flip_h
 			if sprite.flip_h:

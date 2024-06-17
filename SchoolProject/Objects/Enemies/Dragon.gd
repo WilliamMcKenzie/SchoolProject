@@ -8,14 +8,15 @@ var cooldown = maxcooldown
 var projectile = load("res://Objects/Projectiles/Fireball.tscn")
 var sprite
 
+var weapon_upgrade = preload("res://Objects/Pickups/WeaponUpgrade.tscn")
 var teleport_pos = 0
-var teleport_cooldown = 0
-var max_teleport_cooldown = 14
+var teleport_cooldown = false
 var attack_phase = 0
 
 func _ready():
 	speed = 0
 	get_node("AttackTimer").max_value = maxcooldown
+	teleport()
 	
 	randomize()
 	player = get_parent().get_node("Player")
@@ -34,14 +35,13 @@ func teleport():
 
 func _physics_process(delta):
 	if get_parent().playerdied == false:
-		teleport_cooldown -= 1
 		cooldown -= 1
 		
 		get_node("AttackTimer").value = cooldown
 		
-		if teleport_cooldown <= 0:
+		if attack_phase == 2 and teleport_cooldown == false:
 			teleport()
-			teleport_cooldown = 60 * max_teleport_cooldown
+			teleport_cooldown = true
 		var health = get_node("Health").value
 		var max_health = get_node("Health").max_value
 		
@@ -71,6 +71,7 @@ func _physics_process(delta):
 				attack_phase =2
 				spawn_projectile(0, speed)
 			elif attack_phase == 2:
+				teleport_cooldown = false
 				attack_phase =0
 				spawn_projectile(0, speed)
 				spawn_projectile(100, speed)
@@ -79,6 +80,9 @@ func _physics_process(delta):
 		if get_node("Health").value <= 0 and get_node("sprite").animation != "death":
 			get_node("sprite").animation = "death"
 			yield (get_tree().create_timer(1),"timeout")
+			var weapon_insance = weapon_upgrade.instance()
+			get_parent().add_child(weapon_insance)
+			weapon_insance.position = self.position
 			queue_free()
 func reset_anim():
 	if get_node("sprite").animation == "attack":
