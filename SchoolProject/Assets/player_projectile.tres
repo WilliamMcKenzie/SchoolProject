@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 swordorigin:hint_color;
+uniform vec4 swordnew:hint_color;
+
+
+void fragment() {
+	
+	vec4 pixel = texture(TEXTURE,UV);
+	
+	if (round(pixel) == round(swordorigin))
+		COLOR = swordnew;
+	else
+		COLOR = pixel;
+	}
+	"
+
+[resource]
+resource_local_to_scene = true
+render_priority = 55
+shader = SubResource( 1 )
+shader_param/swordorigin = Color( 0.360784, 0.360784, 0.360784, 1 )
+shader_param/swordnew = Color( 0.356863, 0.356863, 0.356863, 1 )

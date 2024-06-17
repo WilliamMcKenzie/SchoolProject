@@ -3,7 +3,6 @@ extends Node2D
 var enemy = preload("res://Objects/Enemies/Enemy.tscn")
 var knight = preload("res://Objects/Enemies/K-night.tscn")
 var dragon = preload("res://Objects/Enemies/Dragon.tscn")
-
 var nodes = {
 	"Enemy" : enemy,
 	"Knight" : knight,
@@ -37,7 +36,6 @@ func _process(delta):
 		return
 	for enemy_type in nodes.keys():
 		var enemy_node = nodes[enemy_type]
-		
 		cooldowns[enemy_type] -= delta
 		if cooldowns[enemy_type] <= 0:
 			cooldowns[enemy_type] = maxcooldowns[enemy_type]

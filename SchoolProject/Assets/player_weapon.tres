@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 projorigin:hint_color;
+uniform vec4 projnew:hint_color;
+
+
+void fragment() {
+	
+	vec4 pixel = texture(TEXTURE,UV);
+	
+	if (round(pixel) == round(projorigin))
+		COLOR = projnew;
+	else
+		COLOR = pixel;
+	}
+	"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/projorigin = Color( 0.866667, 0.866667, 0.866667, 1 )
+shader_param/projnew = Color( 0.855469, 0.855469, 0.855469, 1 )
