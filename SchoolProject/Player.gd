@@ -3,6 +3,7 @@ extends KinematicBody2D
 var speed = 300
 var base_cooldown = 50
 var cooldown = 0
+var weapon = "metal"
 
 var projectile = load("res://Objects/Projectiles/Projectile.tscn")
 # Called when the node enters the scene tree for the first time.
@@ -10,13 +11,14 @@ func _ready():
 	get_node("sprite").connect("animation_finished",self,"reset_anim")
 
 func reset_anim():
+	
 	if get_node("sprite").animation == "attack":
 		get_node("sprite").animation = "default"
 	if get_node("sprite").animation == "death":
 		get_parent().playerdied = true
 		queue_free()
+
 func _physics_process(delta):
-	
 	
 	if cooldown > 0:
 		cooldown -= 1
@@ -40,8 +42,21 @@ func _physics_process(delta):
 			cooldown = base_cooldown
 			var proj = projectile.instance()
 			proj.caller_name = "Player"
-			proj.get_node("sprite").flip_h = !sprite.flip_h
+			if weapon == "metal":
+				print("uh oh")
+				proj.get_node("sprite").material.set_shader_param("swordnew", Color(0.703125, 0.703125, 0.703125,1))
+				proj.damage = 1
+			elif weapon == "mithril":
+				proj.get_node("sprite").material.set_shader_param("swordnew", Color( 0.372549, 0.619608, 0.627451, 1 ))
+				print("sword new should be changed to mithril")
+				print(proj.get_node("sprite").material.get_shader_param("swordnew"))
+				proj.damage = 2
+			elif weapon == "void":
+				print("uh oh")
+				proj.get_node("sprite").material.set_shader_param("swordnew", Color(0.426497, 0.064392, 0.824219,1))
+				proj.damage = 3
 			get_parent().add_child(proj)
+			proj.get_node("sprite").flip_h = !sprite.flip_h
 			if sprite.flip_h:
 				proj.position = position + Vector2(100,0)
 			else:

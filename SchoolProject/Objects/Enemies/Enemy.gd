@@ -23,11 +23,9 @@ func _physics_process(delta):
 
 		if get_node("sprite").animation != "attack" and get_node("sprite").animation != "death" :
 			if position.distance_to(player.position) > 125:
-				print("walk")
 				get_node("sprite").animation = "walk"
 				move_and_slide(velocity)
 			else:
-				print("default")
 				get_node("sprite").animation = "default"
 		if cooldown <= 0 and position.distance_to(player.position) < 125 and get_node("sprite").animation != "death":
 			get_node("sprite").animation = "attack"

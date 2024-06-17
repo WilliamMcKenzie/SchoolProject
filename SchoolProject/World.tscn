@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/ninja1.png" type="Texture" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Health.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World.gd" type="Script" id=11]
 [ext_resource path="res://tiles.png" type="Texture" id=12]
+[ext_resource path="res://Assets/player_weapon.tres" type="Material" id=13]
+[ext_resource path="res://Objects/Pickups/WeaponUpgrade.tscn" type="PackedScene" id=14]
 
 [sub_resource type="TileSet" id=3]
 0/name = "tiles.png 0"
@@ -25,14 +27,8 @@
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": null,
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
 0/z_index = 0
 
 [sub_resource type="SpriteFrames" id=1]
@@ -80,6 +76,7 @@ position = Vector2( 73, 59 )
 script = ExtResource( 1 )
 
 [node name="sprite" type="AnimatedSprite" parent="Player"]
+material = ExtResource( 13 )
 frames = SubResource( 1 )
 playing = true
 
@@ -94,3 +91,6 @@ margin_bottom = -51.0
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 position = Vector2( 527, 355 )
+
+[node name="WeaponUpgrade" parent="." instance=ExtResource( 14 )]
+position = Vector2( 576, 129 )

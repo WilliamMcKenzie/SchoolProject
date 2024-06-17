@@ -1,9 +1,8 @@
 extends Area2D
 
-
 var caller_name
 var time = 0.5
-# Called when the node enters the scene tree for the first time.
+var damage = 1
 func _ready():
 	connect("body_entered",self,"damage")
 
@@ -14,4 +13,4 @@ func _physics_process(delta):
 
 func damage(area):
 	if area.name != caller_name:
-		area.get_node("Health").value -= 1
+		area.get_node("Health").value -= damage
