@@ -13,6 +13,6 @@ func _physics_process(delta):
 
 func damage(area):
 	if caller_name == "Player" and area.has_method("I_AM_A_ENEMY"):
-		area.get_node("Health").value -= 10
+		area.get_node("Health").value -= damage
 	elif caller_name == "Enemy" and not area.has_method("I_AM_A_ENEMY"):
-		area.get_node("Health").value -= 1
+		area.get_node("Health").value -= damage
