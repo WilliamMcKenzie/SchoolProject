@@ -1,7 +1,7 @@
 extends Node2D
 
-var weapon_cooldown = 15
-var weapon_max_cooldown = 15
+var weapon_cooldown = 20
+var weapon_max_cooldown = 5
 var weapons_recieved = 1
 var weapon_upgrade = preload("res://Objects/Pickups/WeaponUpgrade.tscn")
 
@@ -17,13 +17,13 @@ var nodes = {
 var maxcooldowns = {
 	"Enemy" : 8,
 	"Knight" : 18,
-	"Dragon" : 9999,
+	"Dragon" : 90,
 }
 
 var cooldowns = {
-	"Enemy" : 0,
-	"Knight" : 0,
-	"Dragon" : 0,
+	"Enemy" : 2,
+	"Knight" : 5,
+	"Dragon" : 10,
 }
 
 var playerdied = false
@@ -37,6 +37,7 @@ func _ready():
 	pass # Replace with function bod
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	weapon_cooldown -= delta
 	if playerdied:
 		return

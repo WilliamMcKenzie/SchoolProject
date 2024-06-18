@@ -16,6 +16,7 @@ func reset_anim():
 		get_node("sprite").animation = "default"
 	if get_node("sprite").animation == "death":
 		get_parent().playerdied = true
+		get_parent().get_parent().ResetMenu()
 		queue_free()
 
 func _physics_process(delta):
@@ -47,14 +48,12 @@ func _physics_process(delta):
 				proj.damage = 1
 			elif weapon == "mithril":
 				proj.get_node("sprite").material.set_shader_param("swordnew", Color( 0.372549, 0.619608, 0.627451, 1 ))
-				print("sword new should be changed to mithril")
-				print(proj.get_node("sprite").material.get_shader_param("swordnew"))
 				proj.damage = 2
 			elif weapon == "void":
 				proj.get_node("sprite").material.set_shader_param("swordnew", Color(0.426497, 0.064392, 0.824219,1))
 				proj.damage = 3
 			elif weapon == "dragon":
-				proj.get_node("sprite").material.set_shader_param("swordnew", Color(1, 0, 0,1))
+				proj.get_node("sprite").material.set_shader_param("swordnew", Color(1, 0, 0, 1))
 				proj.damage = 7
 			get_parent().add_child(proj)
 			proj.get_node("sprite").flip_h = !sprite.flip_h
@@ -64,5 +63,4 @@ func _physics_process(delta):
 				proj.position = position + Vector2(-100,0)
 	
 	if get_node("Health").value <= 0 and get_node("sprite").animation != "death":
-		get_node("sprite").animation = "death"	
-			
+		get_node("sprite").animation = "death"

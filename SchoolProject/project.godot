@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="School Project"
-run/main_scene="res://World.tscn"
+run/main_scene="res://SceneHandler.tscn"
 config/icon="res://icon.png"
 
 [gui]
