@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Objects/Enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/enemy1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/enemy2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/enemyattack.png" type="Texture" id=4]
 [ext_resource path="res://Assets/enemyattack2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/enemydeath1.png" type="Texture" id=6]
@@ -25,6 +26,11 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -37,6 +43,7 @@ script = ExtResource( 1 )
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
+animation = "walk"
 playing = true
 
 [node name="hitbox" type="CollisionShape2D" parent="."]

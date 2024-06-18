@@ -57,10 +57,10 @@ func _physics_process(delta):
 			get_node("sprite").animation = "attack"
 			cooldown = maxcooldown
 			
-			var speed = 8
+			var speed = 5
 			
 			if health <= max_health / 2:
-				speed = 10
+				speed = 6
 				maxcooldown = 100
 			
 			if attack_phase == 0:
